@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.wwu.maml.dsl/src" modelPluginID="de.wwu.maml.dsl"
+    modelName="MAML" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>maml.ecore</foreignModel>
+  <genPackages prefix="Maml" disposableProviderFactory="true" ecorePackage="maml.ecore#/">
+    <genClasses ecoreClass="maml.ecore#//UseCase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference maml.ecore#//UseCase/processFlowElements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference maml.ecore#//UseCase/processFlowConnections"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference maml.ecore#//UseCase/roles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference maml.ecore#//UseCase/dataTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference maml.ecore#//UseCase/attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute maml.ecore#//UseCase/title"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="maml.ecore#//ProcessFlowElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference maml.ecore#//ProcessFlowElement/nextElements"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference maml.ecore#//ProcessFlowElement/previousElements"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference maml.ecore#//ProcessFlowElement/dataType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="maml.ecore#//ProcessElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute maml.ecore#//ProcessElement/description"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference maml.ecore#//ProcessElement/roles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference maml.ecore#//ProcessElement/events"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="maml.ecore#//InteractionProcessElement"/>
+    <genClasses ecoreClass="maml.ecore#//ShowEntity"/>
+    <genClasses image="false" ecoreClass="maml.ecore#//Connector">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute maml.ecore#//Connector/description"/>
+    </genClasses>
+    <genClasses ecoreClass="maml.ecore#//ProcessConnector">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference maml.ecore#//ProcessConnector/sourceProcessFlowElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference maml.ecore#//ProcessConnector/targetProcessFlowElement"/>
+    </genClasses>
+    <genClasses ecoreClass="maml.ecore#//ParameterConnector">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference maml.ecore#//ParameterConnector/targetElement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute maml.ecore#//ParameterConnector/accessType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute maml.ecore#//ParameterConnector/order"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference maml.ecore#//ParameterConnector/sourceElement"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="maml.ecore#//Event"/>
+    <genClasses image="false" ecoreClass="maml.ecore#//ControlFlowElement"/>
+    <genClasses ecoreClass="maml.ecore#//Xor"/>
+    <genClasses ecoreClass="maml.ecore#//ProcessStartEvent"/>
+    <genClasses ecoreClass="maml.ecore#//Role">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference maml.ecore#//Role/processElements"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute maml.ecore#//Role/name"/>
+    </genClasses>
+    <genClasses ecoreClass="maml.ecore#//ErrorEvent"/>
+    <genClasses ecoreClass="maml.ecore#//SelectEntity"/>
+    <genClasses ecoreClass="maml.ecore#//UpdateEntity"/>
+    <genClasses ecoreClass="maml.ecore#//CreateEntity"/>
+    <genClasses ecoreClass="maml.ecore#//Camera"/>
+    <genClasses ecoreClass="maml.ecore#//DeleteEntity"/>
+    <genClasses ecoreClass="maml.ecore#//Call"/>
+    <genClasses ecoreClass="maml.ecore#//DisplayMessage"/>
+    <genClasses ecoreClass="maml.ecore#//Include">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference maml.ecore#//Include/useCase"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="maml.ecore#//AutomatedProcessElement"/>
+    <genClasses ecoreClass="maml.ecore#//UseCaseTrigger"/>
+    <genClasses ecoreClass="maml.ecore#//Transform">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference maml.ecore#//Transform/targetType"/>
+    </genClasses>
+    <genClasses ecoreClass="maml.ecore#//Webservice"/>
+    <genClasses ecoreClass="maml.ecore#//RetrieveLocation"/>
+    <genClasses ecoreClass="maml.ecore#//CheckConstraint"/>
+    <genClasses image="false" ecoreClass="maml.ecore#//DataSource">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference maml.ecore#//DataSource/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute maml.ecore#//DataSource/typeName"/>
+    </genClasses>
+    <genClasses ecoreClass="maml.ecore#//SingletonDataSource"/>
+    <genClasses ecoreClass="maml.ecore#//LocalDataSource"/>
+    <genClasses ecoreClass="maml.ecore#//RemoteDataSource"/>
+    <genClasses ecoreClass="maml.ecore#//Loop">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference maml.ecore#//Loop/subUsecase"/>
+    </genClasses>
+    <genClasses ecoreClass="maml.ecore#//AssignConnector">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference maml.ecore#//AssignConnector/sourceElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference maml.ecore#//AssignConnector/targetElement"/>
+    </genClasses>
+    <genClasses ecoreClass="maml.ecore#//ProcessEndEvent"/>
+    <genClasses image="false" ecoreClass="maml.ecore#//DataSourceEvent"/>
+    <genClasses ecoreClass="maml.ecore#//NoResultEvent"/>
+    <genClasses ecoreClass="maml.ecore#//MultiResultEvent"/>
+    <genClasses ecoreClass="maml.ecore#//SingleResultEvent"/>
+    <genClasses ecoreClass="maml.ecore#//WaitEvent"/>
+    <genClasses image="false" ecoreClass="maml.ecore#//ParameterSource">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference maml.ecore#//ParameterSource/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="maml.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference maml.ecore#//Model/useCases"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute maml.ecore#//Model/projectName"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Mamldata" ecorePackage="mamldata.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mamldata.ecore#//Multiplicity">
+      <genEnumLiterals ecoreEnumLiteral="mamldata.ecore#//Multiplicity/ONE"/>
+      <genEnumLiterals ecoreEnumLiteral="mamldata.ecore#//Multiplicity/MANY"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="mamldata.ecore#//DataType"/>
+    <genClasses image="false" ecoreClass="mamldata.ecore#//PrimitiveType"/>
+    <genClasses image="false" ecoreClass="mamldata.ecore#//ComplexType"/>
+    <genClasses ecoreClass="mamldata.ecore#//CustomType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamldata.ecore#//CustomType/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mamldata.ecore#//CustomType/attributes"/>
+    </genClasses>
+    <genClasses ecoreClass="mamldata.ecore#//String">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamldata.ecore#//String/value"/>
+    </genClasses>
+    <genClasses ecoreClass="mamldata.ecore#//Location">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamldata.ecore#//Location/latitude"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamldata.ecore#//Location/longitude"/>
+    </genClasses>
+    <genClasses ecoreClass="mamldata.ecore#//PhoneNumber"/>
+    <genClasses ecoreClass="mamldata.ecore#//Url"/>
+    <genClasses ecoreClass="mamldata.ecore#//Email"/>
+    <genClasses ecoreClass="mamldata.ecore#//Boolean">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamldata.ecore#//Boolean/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="mamldata.ecore#//NumericType"/>
+    <genClasses ecoreClass="mamldata.ecore#//Integer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamldata.ecore#//Integer/value"/>
+    </genClasses>
+    <genClasses ecoreClass="mamldata.ecore#//Float">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamldata.ecore#//Float/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="mamldata.ecore#//TemporalType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamldata.ecore#//TemporalType/value"/>
+    </genClasses>
+    <genClasses ecoreClass="mamldata.ecore#//DateTime"/>
+    <genClasses ecoreClass="mamldata.ecore#//Date"/>
+    <genClasses ecoreClass="mamldata.ecore#//Time"/>
+    <genClasses ecoreClass="mamldata.ecore#//Enum">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mamldata.ecore#//Enum/value"/>
+    </genClasses>
+    <genClasses ecoreClass="mamldata.ecore#//File">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamldata.ecore#//File/path"/>
+    </genClasses>
+    <genClasses ecoreClass="mamldata.ecore#//Image"/>
+    <genClasses ecoreClass="mamldata.ecore#//Collection">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mamldata.ecore#//Collection/type"/>
+    </genClasses>
+    <genClasses ecoreClass="mamldata.ecore#//AnonymousType"/>
+    <genClasses ecoreClass="mamldata.ecore#//DataTypeLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamldata.ecore#//DataTypeLiteral/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamldata.ecore#//DataTypeLiteral/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mamldata.ecore#//DataTypeLiteral/concreteType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamldata.ecore#//DataTypeLiteral/primitive"/>
+    </genClasses>
+    <genClasses ecoreClass="mamldata.ecore#//Property">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mamldata.ecore#//Property/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamldata.ecore#//Property/name"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Mamlgui" ecorePackage="mamlgui.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mamlgui.ecore#//AccessType">
+      <genEnumLiterals ecoreEnumLiteral="mamlgui.ecore#//AccessType/READ"/>
+      <genEnumLiterals ecoreEnumLiteral="mamlgui.ecore#//AccessType/WRITE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mamlgui.ecore#//ComparisonOperator">
+      <genEnumLiterals ecoreEnumLiteral="mamlgui.ecore#//ComparisonOperator/EQUALS"/>
+      <genEnumLiterals ecoreEnumLiteral="mamlgui.ecore#//ComparisonOperator/GT"/>
+      <genEnumLiterals ecoreEnumLiteral="mamlgui.ecore#//ComparisonOperator/LT"/>
+      <genEnumLiterals ecoreEnumLiteral="mamlgui.ecore#//ComparisonOperator/GTE"/>
+      <genEnumLiterals ecoreEnumLiteral="mamlgui.ecore#//ComparisonOperator/LTE"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="mamlgui.ecore#//GUIElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamlgui.ecore#//GUIElement/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamlgui.ecore#//GUIElement/type"/>
+    </genClasses>
+    <genClasses ecoreClass="mamlgui.ecore#//Label"/>
+    <genClasses image="false" ecoreClass="mamlgui.ecore#//AbstractAttribute"/>
+    <genClasses ecoreClass="mamlgui.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamlgui.ecore#//Attribute/multiplicity"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="mamlgui.ecore#//ComputedAttribute">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mamlgui.ecore#//ComputedAttribute/operators"/>
+    </genClasses>
+    <genClasses ecoreClass="mamlgui.ecore#//SumFunc"/>
+    <genClasses image="false" ecoreClass="mamlgui.ecore#//ComputationOperator"/>
+    <genClasses image="false" ecoreClass="mamlgui.ecore#//ArithmeticOperator">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mamlgui.ecore#//ArithmeticOperator/op1"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mamlgui.ecore#//ArithmeticOperator/op2"/>
+    </genClasses>
+    <genClasses ecoreClass="mamlgui.ecore#//PlusOperator"/>
+    <genClasses ecoreClass="mamlgui.ecore#//MaxFunc"/>
+    <genClasses ecoreClass="mamlgui.ecore#//AvgFunc"/>
+    <genClasses ecoreClass="mamlgui.ecore#//MinFunc"/>
+    <genClasses ecoreClass="mamlgui.ecore#//MinusOperator"/>
+    <genClasses ecoreClass="mamlgui.ecore#//MultiplicationOperator"/>
+    <genClasses ecoreClass="mamlgui.ecore#//DivisionOperator"/>
+    <genClasses ecoreClass="mamlgui.ecore#//Filter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mamlgui.ecore#//Filter/attribute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamlgui.ecore#//Filter/comparison"/>
+    </genClasses>
+    <genClasses ecoreClass="mamlgui.ecore#//Aggregator">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mamlgui.ecore#//Aggregator/attribute"/>
+    </genClasses>
+    <genClasses ecoreClass="mamlgui.ecore#//Validator">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mamlgui.ecore#//Validator/attribute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamlgui.ecore#//Validator/comparison"/>
+    </genClasses>
+    <genClasses ecoreClass="mamlgui.ecore#//CountFunc"/>
+  </genPackages>
+</genmodel:GenModel>

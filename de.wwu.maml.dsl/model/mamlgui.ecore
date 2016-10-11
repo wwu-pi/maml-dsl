@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mamlgui" nsURI="http://de/wwu/maml/dsl/mamlgui" nsPrefix="de.wwu.maml.dsl">
+  <eClassifiers xsi:type="ecore:EClass" name="GUIElement" abstract="true" eSuperTypes="maml.ecore#//ParameterSource">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Label" eSuperTypes="#//GUIElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractAttribute" abstract="true" eSuperTypes="#//ComputationOperator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//AbstractAttribute">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicity" eType="ecore:EEnum mamldata.ecore#//Multiplicity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComputedAttribute" abstract="true" eSuperTypes="#//AbstractAttribute">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operators" upperBound="-1"
+        eType="#//ComputationOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SumFunc" eSuperTypes="#//ComputedAttribute"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ComputationOperator" abstract="true"
+      eSuperTypes="#//GUIElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ArithmeticOperator" abstract="true"
+      eSuperTypes="#//ComputationOperator">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="op1" eType="#//GUIElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="op2" eType="#//GUIElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PlusOperator" eSuperTypes="#//ArithmeticOperator"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="AccessType">
+    <eLiterals name="READ"/>
+    <eLiterals name="WRITE" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MaxFunc" eSuperTypes="#//ComputedAttribute"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AvgFunc" eSuperTypes="#//ComputedAttribute"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MinFunc" eSuperTypes="#//ComputedAttribute"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MinusOperator" eSuperTypes="#//ArithmeticOperator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiplicationOperator" eSuperTypes="#//ArithmeticOperator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DivisionOperator" eSuperTypes="#//ArithmeticOperator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Filter" eSuperTypes="#//GUIElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//GUIElement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparison" eType="#//ComparisonOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Aggregator" eSuperTypes="#//GUIElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//GUIElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Validator" eSuperTypes="#//GUIElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//GUIElement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparison" eType="#//ComparisonOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ComparisonOperator">
+    <eLiterals name="EQUALS"/>
+    <eLiterals name="GT" value="1"/>
+    <eLiterals name="LT" value="2"/>
+    <eLiterals name="GTE" value="3"/>
+    <eLiterals name="LTE" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CountFunc" eSuperTypes="#//ComputedAttribute"/>
+</ecore:EPackage>

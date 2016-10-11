@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="maml" nsURI="http://de/wwu/maml/dsl/maml" nsPrefix="de.wwu.maml.dsl">
+  <eClassifiers xsi:type="ecore:EClass" name="UseCase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processFlowElements" upperBound="-1"
+        eType="#//ProcessFlowElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processFlowConnections"
+        upperBound="-1" eType="#//Connector" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles" upperBound="-1"
+        eType="#//Role" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataTypes" upperBound="-1"
+        eType="ecore:EClass mamldata.ecore#//DataType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+        eType="ecore:EClass mamlgui.ecore#//GUIElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessFlowElement" abstract="true"
+      eSuperTypes="#//ParameterSource">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nextElements" upperBound="-1"
+        eType="#//ProcessConnector" eOpposite="#//ProcessConnector/sourceProcessFlowElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="previousElements" upperBound="-1"
+        eType="#//ProcessConnector" eOpposite="#//ProcessConnector/targetProcessFlowElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" eType="ecore:EClass mamldata.ecore#//DataType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessElement" abstract="true" eSuperTypes="#//ProcessFlowElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles" upperBound="-1"
+        eType="#//Role" eOpposite="#//Role/processElements"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
+        eType="#//Event" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InteractionProcessElement" abstract="true"
+      eSuperTypes="#//ProcessElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ShowEntity" eSuperTypes="#//InteractionProcessElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Connector" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessConnector" eSuperTypes="#//Connector">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceProcessFlowElement"
+        lowerBound="1" eType="#//ProcessFlowElement" eOpposite="#//ProcessFlowElement/nextElements"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetProcessFlowElement"
+        lowerBound="1" eType="#//ProcessFlowElement" eOpposite="#//ProcessFlowElement/previousElements"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterConnector" eSuperTypes="#//Connector">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetElement" lowerBound="1"
+        eType="ecore:EClass mamlgui.ecore#//GUIElement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessType" eType="ecore:EEnum mamlgui.ecore#//AccessType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElement" lowerBound="1"
+        eType="#//ParameterSource" eOpposite="#//ParameterSource/parameters"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Event" abstract="true" eSuperTypes="#//ProcessFlowElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlFlowElement" abstract="true"
+      eSuperTypes="#//ProcessFlowElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Xor" eSuperTypes="#//ControlFlowElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessStartEvent" eSuperTypes="#//Event"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Role">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processElements" upperBound="-1"
+        eType="#//ProcessElement" eOpposite="#//ProcessElement/roles"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ErrorEvent" eSuperTypes="#//Event"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SelectEntity" eSuperTypes="#//InteractionProcessElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UpdateEntity" eSuperTypes="#//InteractionProcessElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CreateEntity" eSuperTypes="#//InteractionProcessElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Camera" eSuperTypes="#//InteractionProcessElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DeleteEntity" eSuperTypes="#//InteractionProcessElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Call" eSuperTypes="#//InteractionProcessElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DisplayMessage" eSuperTypes="#//InteractionProcessElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Include" eSuperTypes="#//AutomatedProcessElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="useCase" eType="#//UseCase"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AutomatedProcessElement" abstract="true"
+      eSuperTypes="#//ProcessElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UseCaseTrigger" eSuperTypes="#//AutomatedProcessElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Transform" eSuperTypes="#//AutomatedProcessElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetType" eType="ecore:EClass mamldata.ecore#//DataType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Webservice" eSuperTypes="#//AutomatedProcessElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RetrieveLocation" eSuperTypes="#//AutomatedProcessElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CheckConstraint" eSuperTypes="#//AutomatedProcessElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataSource" abstract="true" eSuperTypes="#//ProcessFlowElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass mamldata.ecore#//CustomType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SingletonDataSource" eSuperTypes="#//DataSource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LocalDataSource" eSuperTypes="#//DataSource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RemoteDataSource" eSuperTypes="#//DataSource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//ControlFlowElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subUsecase" eType="#//UseCase"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssignConnector" eSuperTypes="#//Connector">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElement" lowerBound="1"
+        eType="ecore:EClass mamlgui.ecore#//GUIElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetElement" lowerBound="1"
+        eType="ecore:EClass mamlgui.ecore#//AbstractAttribute"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessEndEvent" eSuperTypes="#//Event"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataSourceEvent" abstract="true" eSuperTypes="#//Event"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NoResultEvent" eSuperTypes="#//DataSourceEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiResultEvent" eSuperTypes="#//DataSourceEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleResultEvent" eSuperTypes="#//DataSourceEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="WaitEvent" eSuperTypes="#//Event"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterSource" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//ParameterConnector" eOpposite="#//ParameterConnector/sourceElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="useCases" upperBound="-1"
+        eType="#//UseCase" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+</ecore:EPackage>
