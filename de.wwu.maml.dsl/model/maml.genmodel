@@ -5,7 +5,8 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>maml.ecore</foreignModel>
-  <genPackages prefix="Maml" disposableProviderFactory="true" ecorePackage="maml.ecore#/">
+  <genPackages prefix="Maml" basePackage="de.wwu.maml.dsl" disposableProviderFactory="true"
+      ecorePackage="maml.ecore#/">
     <genClasses ecoreClass="maml.ecore#//UseCase">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference maml.ecore#//UseCase/processFlowElements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference maml.ecore#//UseCase/processFlowConnections"/>
@@ -94,7 +95,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute maml.ecore#//Model/projectName"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="Mamldata" ecorePackage="mamldata.ecore#/">
+  <genPackages prefix="Mamldata" basePackage="de.wwu.maml.dsl" ecorePackage="mamldata.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="mamldata.ecore#//Multiplicity">
       <genEnumLiterals ecoreEnumLiteral="mamldata.ecore#//Multiplicity/ONE"/>
       <genEnumLiterals ecoreEnumLiteral="mamldata.ecore#//Multiplicity/MANY"/>
@@ -154,7 +155,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamldata.ecore#//Property/name"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="Mamlgui" ecorePackage="mamlgui.ecore#/">
+  <genPackages prefix="Mamlgui" basePackage="de.wwu.maml.dsl" ecorePackage="mamlgui.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="mamlgui.ecore#//AccessType">
       <genEnumLiterals ecoreEnumLiteral="mamlgui.ecore#//AccessType/READ"/>
       <genEnumLiterals ecoreEnumLiteral="mamlgui.ecore#//AccessType/WRITE"/>
