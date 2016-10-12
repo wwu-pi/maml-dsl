@@ -16,14 +16,6 @@ configurations {
 	}
 }
 
-sourceSets {
-    main {
-        java {
-            srcDirs = ["src"]
-        }
-    }
-}
-
 eclipse {
 	classpath {	
 		file {
@@ -75,37 +67,36 @@ task generateMamlFromEcore(type: JavaExec, dependsOn: eclipseClasspath) {
 }
 
 task exportMamlDsl(type: Jar, dependsOn:generateMamlFromEcore){
-	//onlyIf { !compileJava.source.empty } 
-        manifest {
-            // benutze das im Projekt vorliegende File, falls vorhanden:
-            def manif = "${projectDir}/META-INF/MANIFEST.MF"
-			
-			def requiredProjects = []
-			configurations.mwe2.getAllDependencies().each { dep-> 
-			requiredProjects += dep.name
-			logger.info 'Required Project: ' + dep.name }
-						
-            if (new File(manif).exists()) {                
-                from (manif) {
-					//attributes 'Require-Bundle': requiredProjects
-					eachEntry { details ->                        
-                        if (details.key == 'Require-Bundle') {
-                            details.value = requiredProjects.join(', ') + ", org.apache.log4j, org.apache.commons.logging" // Eclipse needs this but there is no package available
-							println details.value
-                        }
-                    }
-                }  
-            }
-            else {
-				// Minimal configuration
-                logger.info(project.name + " doesn't have a META-INF/MANIFEST.MF.")  
-				manifest.attributes 'Bundle-ManifestVersion': '2'
-				manifest.attributes 'Require-Bundle': requiredProjects.join(', ')
-				manifest.attributes 'Bundle-SymbolicName': "de.wwu.maml.dsl; singleton:=true"
-				manifest.attributes 'Bundle-Version': '1.0.0.qualifier'
-				manifest.attributes 'Bundle-RequiredExecutionEnvironment': 'JavaSE-1.8'
-            }
-        }
+	manifest {
+		// benutze das im Projekt vorliegende File, falls vorhanden:
+		def manif = "${projectDir}/META-INF/MANIFEST.MF"
+		
+		def requiredProjects = []
+		configurations.mwe2.getAllDependencies().each { dep-> 
+		requiredProjects += dep.name
+		logger.info 'Required Project: ' + dep.name }
+					
+		if (new File(manif).exists()) {                
+			from (manif) {
+				//attributes 'Require-Bundle': requiredProjects
+				eachEntry { details ->                        
+					if (details.key == 'Require-Bundle') {
+						details.value = requiredProjects.join(', ') + ", org.apache.log4j, org.apache.commons.logging" // Eclipse needs this but there is no package available
+						println details.value
+					}
+				}
+			}  
+		}
+		else {
+			// Minimal configuration
+			logger.info(project.name + " doesn't have a META-INF/MANIFEST.MF.")  
+			manifest.attributes 'Bundle-ManifestVersion': '2'
+			manifest.attributes 'Require-Bundle': requiredProjects.join(', ')
+			manifest.attributes 'Bundle-SymbolicName': "de.wwu.maml.dsl; singleton:=true"
+			manifest.attributes 'Bundle-Version': '1.0.0.qualifier'
+			manifest.attributes 'Bundle-RequiredExecutionEnvironment': 'JavaSE-1.8'
+		}
+	}
 }
 
 task updateManifest(type: Copy, dependsOn: exportMamlDsl) {
