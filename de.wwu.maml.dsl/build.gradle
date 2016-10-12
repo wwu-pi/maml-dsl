@@ -3,6 +3,7 @@ plugins {
 }
 
 apply plugin: 'java'
+apply plugin: 'eclipse'
 
 repositories {
     jcenter()
@@ -13,6 +14,14 @@ configurations {
 	mwe2 {
 		extendsFrom compile
 	}
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src"]
+        }
+    }
 }
 
 dependencies {
@@ -36,3 +45,5 @@ task generateEcore(type: JavaExec) {
 	//args += '-p'
 	//args += 'rootPath=./'
 }
+
+generateEcore.dependsOn eclipseClasspath
