@@ -24,6 +24,19 @@ sourceSets {
     }
 }
 
+eclipse {
+	classpath {	
+		file {
+			whenMerged { classpath ->
+				withXml {
+					def node = it.asNode()
+					node.appendNode('classpathentry', [kind: 'con', path: 'org.eclipse.pde.core.requiredPlugins'])
+				}
+			}
+		}
+	}
+}
+
 dependencies {
 	//mwe2 group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
 	mwe2 'org.eclipse.equinox:org.eclipse.equinox.common:3.6.200.v20130402-1505'
@@ -34,6 +47,8 @@ dependencies {
 	mwe2 'org.eclipse.emf:org.eclipse.emf.ecore:2.11.1-v20150805-0538'
 	mwe2 'org.eclipse.emf:org.eclipse.emf.codegen.ecore:2.11.0-v20150806-0404'
 	mwe2 'org.eclipse.emf:org.eclipse.emf.common:2.11.0-v20150805-0538'
+	mwe2 'org.eclipse.emf:org.eclipse.emf.mwe2.lib:2.9.0.201605261059'
+	
 }
 
 task generateMamlFromEcore(type: JavaExec, dependsOn: eclipseClasspath) {
@@ -47,18 +62,19 @@ task generateMamlFromEcore(type: JavaExec, dependsOn: eclipseClasspath) {
 	//args += 'rootPath=./'	
 }
 
-
 task exportMamlDsl(type: Jar, dependsOn:generateMamlFromEcore){
 	//onlyIf { !compileJava.source.empty } 
         manifest {
             // benutze das im Projekt vorliegende File, falls vorhanden:
             def manif = "${projectDir}/META-INF/MANIFEST.MF"
+			
+			def requiredProjects = []
+			configurations.mwe2.getAllDependencies().each { dep-> 
+			requiredProjects += dep.name
+			logger.info 'Required Project: ' + dep.name }
+						
             if (new File(manif).exists()) {                
                 from (manif) {
-					def requiredProjects = []
-					configurations.mwe2.getAllDependencies().each { dep-> 
-						requiredProjects += dep.name
-						logger.info 'Required Project: ' + dep.name }
 					//attributes 'Require-Bundle': requiredProjects
 					eachEntry { details ->                        
                         if (details.key == 'Require-Bundle') {
@@ -66,11 +82,12 @@ task exportMamlDsl(type: Jar, dependsOn:generateMamlFromEcore){
 							println details.value
                         }
                     }
-					
                 }  
             }
             else {
                 logger.info(project.name + " doesn't have a META-INF/MANIFEST.MF.")  
+				manifest.attributes 'Require-Bundle': requiredProjects.join(', ')
+				manifest.attributes 'Bundle-SymbolicName': "de.wwu.maml.dsl; singleton:=true"
             }
         }
 }
