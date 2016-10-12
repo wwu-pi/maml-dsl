@@ -85,9 +85,12 @@ task exportMamlDsl(type: Jar, dependsOn:generateMamlFromEcore){
                 }  
             }
             else {
+				// Minimal configuration
                 logger.info(project.name + " doesn't have a META-INF/MANIFEST.MF.")  
 				manifest.attributes 'Require-Bundle': requiredProjects.join(', ')
 				manifest.attributes 'Bundle-SymbolicName': "de.wwu.maml.dsl; singleton:=true"
+				manifest.attributes 'Bundle-Version': '1.0.0.qualifier'
+				manifest.attributes 'Bundle-RequiredExecutionEnvironment': 'JavaSE-1.8'
             }
         }
 }
