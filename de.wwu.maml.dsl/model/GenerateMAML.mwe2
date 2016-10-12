@@ -1,0 +1,16 @@
+module de.wwu.maml.dsl.GenerateMAML
+
+Workflow {	
+	bean = org.eclipse.emf.mwe.utils.StandaloneSetup {
+	    platformUri="."
+	}
+	
+	component = org.eclipse.emf.mwe.utils.DirectoryCleaner {
+	    directory ="src/"
+	}
+	
+	component = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
+	    genModel = "platform:/resource/de.wwu.maml.dsl/model/maml.genmodel"
+	    srcPath = "platform:/resource/de.wwu.maml.dsl/src/" 
+	}
+}
