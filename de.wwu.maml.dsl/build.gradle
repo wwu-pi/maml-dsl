@@ -39,6 +39,11 @@ eclipse {
 						node.appendNode('classpathentry', [kind: 'con', path: 'org.eclipse.pde.core.requiredPlugins'])
 					}
 				}
+				
+				// Add source path
+				if(classpath.entries.findAll({entry -> entry instanceof org.gradle.plugins.ide.eclipse.model.SourceFolder }).size == 0) {
+					classpath.entries.add( new org.gradle.plugins.ide.eclipse.model.SourceFolder('src', null))
+				}
 			}
 		}
 	}
