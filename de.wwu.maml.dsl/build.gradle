@@ -25,7 +25,7 @@ sourceSets {
 }
 
 dependencies {
-	mwe2 group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
+	//mwe2 group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
 	mwe2 'org.eclipse.equinox:org.eclipse.equinox.common:3.6.200.v20130402-1505'
 	mwe2 'org.eclipse.emf:org.eclipse.emf.mwe2.launch:2.8.3'
 	mwe2 'org.eclipse.xtext:org.eclipse.xtext:2.10.0'
@@ -33,9 +33,10 @@ dependencies {
 	mwe2 'org.eclipse.emf:org.eclipse.emf.mwe.utils:1.3.20.201605261059'
 	mwe2 'org.eclipse.emf:org.eclipse.emf.ecore:2.11.1-v20150805-0538'
 	mwe2 'org.eclipse.emf:org.eclipse.emf.codegen.ecore:2.11.0-v20150806-0404'
+	mwe2 'org.eclipse.emf:org.eclipse.emf.common:2.11.0-v20150805-0538'
 }
 
-task generateEcore(type: JavaExec) {
+task generateMamlFromEcore(type: JavaExec, dependsOn: eclipseClasspath) {
 	main = 'org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher'
 	classpath = configurations.mwe2 + files('./')
 	
@@ -43,7 +44,41 @@ task generateEcore(type: JavaExec) {
 	outputs.dir 'src'
 	args += 'model/GenerateMAML.mwe2'
 	//args += '-p'
-	//args += 'rootPath=./'
+	//args += 'rootPath=./'	
 }
 
-generateEcore.dependsOn eclipseClasspath
+
+task exportMamlDsl(type: Jar, dependsOn:generateMamlFromEcore){
+	//onlyIf { !compileJava.source.empty } 
+        manifest {
+            // benutze das im Projekt vorliegende File, falls vorhanden:
+            def manif = "${projectDir}/META-INF/MANIFEST.MF"
+            if (new File(manif).exists()) {                
+                from (manif) {
+					def requiredProjects = []
+					configurations.mwe2.getAllDependencies().each { dep-> 
+						requiredProjects += dep.name
+						logger.info 'Required Project: ' + dep.name }
+					//attributes 'Require-Bundle': requiredProjects
+					eachEntry { details ->                        
+                        if (details.key == 'Require-Bundle') {
+                            details.value = requiredProjects.join(', ')
+							println details.value
+                        }
+                    }
+					
+                }  
+            }
+            else {
+                logger.info(project.name + " doesn't have a META-INF/MANIFEST.MF.")  
+            }
+        }
+}
+
+task updateManifest(type: Copy, dependsOn: exportMamlDsl) {
+	from zipTree("${projectDir}/build/libs/de.wwu.maml.dsl.jar")
+	into "${projectDir}/"
+	include 'META-INF/MANIFEST.MF'
+}
+
+task generateMamlDsl(dependsOn:updateManifest)
