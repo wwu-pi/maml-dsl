@@ -85,7 +85,7 @@ task exportMamlDsl(type: Jar, dependsOn:generateMamlFromEcore){
 					//attributes 'Require-Bundle': requiredProjects
 					eachEntry { details ->                        
                         if (details.key == 'Require-Bundle') {
-                            details.value = requiredProjects.join(', ') + ", org.apache.log4j" // Eclipse needs this but there is no package available
+                            details.value = requiredProjects.join(', ') + ", org.apache.log4j, org.apache.commons.logging" // Eclipse needs this but there is no package available
 							println details.value
                         }
                     }
