@@ -28,9 +28,16 @@ eclipse {
 	classpath {	
 		file {
 			whenMerged { classpath ->
-				withXml {
-					def node = it.asNode()
-					node.appendNode('classpathentry', [kind: 'con', path: 'org.eclipse.pde.core.requiredPlugins'])
+				if(classpath.entries.findAll({entry -> entry instanceof org.gradle.plugins.ide.eclipse.model.Container && entry.path == 'org.eclipse.pde.core.requiredPlugins'
+				}).size == 0) {
+					
+					withXml {
+						def node = it.asNode()
+						
+						logger.info 'Add classpath entry for org.eclipse.pde.core.requiredPlugins'
+						
+						node.appendNode('classpathentry', [kind: 'con', path: 'org.eclipse.pde.core.requiredPlugins'])
+					}
 				}
 			}
 		}
@@ -38,7 +45,6 @@ eclipse {
 }
 
 dependencies {
-	//mwe2 group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
 	mwe2 'org.eclipse.equinox:org.eclipse.equinox.common:3.6.200.v20130402-1505'
 	mwe2 'org.eclipse.emf:org.eclipse.emf.mwe2.launch:2.8.3'
 	mwe2 'org.eclipse.xtext:org.eclipse.xtext:2.10.0'
@@ -48,7 +54,8 @@ dependencies {
 	mwe2 'org.eclipse.emf:org.eclipse.emf.codegen.ecore:2.11.0-v20150806-0404'
 	mwe2 'org.eclipse.emf:org.eclipse.emf.common:2.11.0-v20150805-0538'
 	mwe2 'org.eclipse.emf:org.eclipse.emf.mwe2.lib:2.9.0.201605261059'
-	
+	// Runtime libs for Eclipse
+	mwe2 'org.eclipse.xtext:org.eclipse.xtext.xbase.lib:2.10.0'
 }
 
 task generateMamlFromEcore(type: JavaExec, dependsOn: eclipseClasspath) {
@@ -78,7 +85,7 @@ task exportMamlDsl(type: Jar, dependsOn:generateMamlFromEcore){
 					//attributes 'Require-Bundle': requiredProjects
 					eachEntry { details ->                        
                         if (details.key == 'Require-Bundle') {
-                            details.value = requiredProjects.join(', ')
+                            details.value = requiredProjects.join(', ') + ", org.apache.log4j" // Eclipse needs this but there is no package available
 							println details.value
                         }
                     }
