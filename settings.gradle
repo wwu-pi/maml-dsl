@@ -1,1 +1,1 @@
-include 'de.wwu.maml.dsl'
+include 'de.wwu.maml.dsl', 'de.wwu.maml.dsl.edit', 'de.wwu.maml.dsl.editor', 'de.wwu.maml.dsl.tests'
