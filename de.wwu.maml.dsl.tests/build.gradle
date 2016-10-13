@@ -1,0 +1,3 @@
+apply plugin: 'java'
+
+task exportMamlDslTestsPlugin(type:Jar, dependsOn: build)
