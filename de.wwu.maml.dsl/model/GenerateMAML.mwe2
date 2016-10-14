@@ -2,7 +2,7 @@ module de.wwu.maml.dsl.GenerateMAML
 
 Workflow {	
 	bean = org.eclipse.emf.mwe.utils.StandaloneSetup {
-	    platformUri="."
+	    platformUri=".."
 	}
 	
 	component = org.eclipse.emf.mwe.utils.DirectoryCleaner {
@@ -11,6 +11,8 @@ Workflow {
 	
 	component = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
 	    genModel = "platform:/resource/de.wwu.maml.dsl/model/maml.genmodel"
-	    srcPath = "platform:/resource/de.wwu.maml.dsl/src/" 
+	    srcPath = "platform:/resource/de.wwu.maml.dsl/src/"
+	    generateEditor = true
+	    generateEdit = true
 	}
 }
