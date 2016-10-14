@@ -1,5 +1,5 @@
 plugins {
-  id 'org.xtext.xtext' version '1.0.0-RC4'
+  //id 'org.xtext.xtext' version '1.0.0-RC4'
 }
 
 apply plugin: 'java'
@@ -15,6 +15,12 @@ configurations {
 		extendsFrom compile
 	}
 }
+
+//artifacts {
+//	archives exportMamlDsl
+//}
+
+sourceSets.main.java.srcDirs = ["src"]
 
 eclipse {
 	classpath {	
@@ -42,22 +48,22 @@ eclipse {
 }
 
 dependencies {
-	mwe2 'org.eclipse.equinox:org.eclipse.equinox.common:3.6.200.v20130402-1505'
-	mwe2 'org.eclipse.emf:org.eclipse.emf.mwe2.launch:2.8.3'
-	mwe2 'org.eclipse.xtext:org.eclipse.xtext:2.10.0'
-	mwe2 'org.eclipse.xtext:org.eclipse.xtext.common.types:2.10.0'
-	mwe2 'org.eclipse.emf:org.eclipse.emf.mwe.utils:1.3.20.201605261059'
-	mwe2 'org.eclipse.emf:org.eclipse.emf.ecore:2.11.1-v20150805-0538'
-	mwe2 'org.eclipse.emf:org.eclipse.emf.codegen.ecore:2.11.0-v20150806-0404'
-	mwe2 'org.eclipse.emf:org.eclipse.emf.common:2.11.0-v20150805-0538'
-	mwe2 'org.eclipse.emf:org.eclipse.emf.mwe2.lib:2.9.0.201605261059'
+	compile 'org.eclipse.equinox:org.eclipse.equinox.common:3.6.200.v20130402-1505'
+	compile 'org.eclipse.emf:org.eclipse.emf.mwe2.launch:2.8.3'
+	compile 'org.eclipse.xtext:org.eclipse.xtext:2.10.0'
+	compile 'org.eclipse.xtext:org.eclipse.xtext.common.types:2.10.0'
+	compile 'org.eclipse.emf:org.eclipse.emf.mwe.utils:1.3.20.201605261059'
+	compile 'org.eclipse.emf:org.eclipse.emf.ecore:2.11.1-v20150805-0538'
+	compile 'org.eclipse.emf:org.eclipse.emf.codegen.ecore:2.11.0-v20150806-0404'
+	compile 'org.eclipse.emf:org.eclipse.emf.common:2.11.0-v20150805-0538'
+	compile 'org.eclipse.emf:org.eclipse.emf.mwe2.lib:2.9.0.201605261059'
 	// Runtime libs for Eclipse
-	mwe2 'org.eclipse.xtext:org.eclipse.xtext.xbase.lib:2.10.0'
+	compile 'org.eclipse.xtext:org.eclipse.xtext.xbase.lib:2.10.0'
 }
 
 task generateMamlFromEcore(type: JavaExec, dependsOn: eclipseClasspath) {
 	main = 'org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher'
-	classpath = configurations.mwe2 + files('./')
+	classpath = configurations.compile + files('./')
 	
 	//inputs.file 'model/GenerateMAML.mwe2'
 	outputs.dir 'src'
@@ -67,6 +73,7 @@ task generateMamlFromEcore(type: JavaExec, dependsOn: eclipseClasspath) {
 }
 
 task exportMamlDsl(type: Jar, dependsOn:generateMamlFromEcore){
+	from sourceSets.main.allSource
 	manifest {
 		// benutze das im Projekt vorliegende File, falls vorhanden:
 		def manif = "${projectDir}/META-INF/MANIFEST.MF"
@@ -105,4 +112,4 @@ task updateManifest(type: Copy, dependsOn: exportMamlDsl) {
 	include 'META-INF/MANIFEST.MF'
 }
 
-task generateMamlDsl(dependsOn:updateManifest)
+task setupMamlDsl(dependsOn:updateManifest)
