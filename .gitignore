@@ -88,3 +88,5 @@ hs_err_pid*
 /de.wwu.maml.dsl.tests/*
 # BUT keep gradle files
 !build.gradle
+# AND keep project files (otherwise generation will fail)
+!.project
