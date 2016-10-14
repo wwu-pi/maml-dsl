@@ -102,6 +102,7 @@ task exportMamlDsl(type: Jar, dependsOn:generateMamlFromEcore){
 			manifest.attributes 'Bundle-SymbolicName': "de.wwu.maml.dsl; singleton:=true"
 			manifest.attributes 'Bundle-Version': '1.0.0.qualifier'
 			manifest.attributes 'Bundle-RequiredExecutionEnvironment': 'JavaSE-1.8'
+			manifest.attributes 'Export-Package': 'de.wwu.maml.dsl.maml,de.wwu.maml.dsl.maml.impl,de.wwu.maml.dsl.maml.util,de.wwu.maml.dsl.mamldata,de.wwu.maml.dsl.mamldata.impl,de.wwu.maml.dsl.mamldata.util,de.wwu.maml.dsl.mamlgui,de.wwu.maml.dsl.mamlgui.impl,de.wwu.maml.dsl.mamlgui.util'
 		}
 	}
 }
