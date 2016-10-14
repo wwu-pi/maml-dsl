@@ -107,10 +107,8 @@ task exportMamlDsl(type: Jar, dependsOn:generateMamlFromEcore){
 	}
 }
 
-task updateManifest(type: Copy, dependsOn: exportMamlDsl) {
+task updateMamlDslManifest(type: Copy, dependsOn: exportMamlDsl) {
 	from zipTree("${projectDir}/build/libs/de.wwu.maml.dsl.jar")
 	into "${projectDir}/"
 	include 'META-INF/MANIFEST.MF'
 }
-
-task setupMamlDsl(dependsOn:updateManifest)
