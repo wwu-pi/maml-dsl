@@ -90,3 +90,6 @@ hs_err_pid*
 !build.gradle
 # AND keep project files (otherwise generation will fail)
 !.project
+# AND keep classpath files (otherwise import will fail) TODO 
+!/de.wwu.maml.dsl.edit/.classpath
+!/de.wwu.maml.dsl.editor/.classpath
