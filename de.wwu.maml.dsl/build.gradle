@@ -4,10 +4,12 @@ plugins {
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'maven'
 
 repositories {
     jcenter()
 	mavenCentral()
+	mavenLocal()
 }
 
 configurations {
@@ -15,10 +17,6 @@ configurations {
 		extendsFrom compile
 	}
 }
-
-//artifacts {
-//	archives exportMamlDsl
-//}
 
 sourceSets.main.java.srcDirs = ["src"]
 
@@ -105,6 +103,12 @@ task exportMamlDsl(type: Jar, dependsOn:generateMamlFromEcore){
 			manifest.attributes 'Export-Package': 'de.wwu.maml.dsl.maml,de.wwu.maml.dsl.maml.impl,de.wwu.maml.dsl.maml.util,de.wwu.maml.dsl.mamldata,de.wwu.maml.dsl.mamldata.impl,de.wwu.maml.dsl.mamldata.util,de.wwu.maml.dsl.mamlgui,de.wwu.maml.dsl.mamlgui.impl,de.wwu.maml.dsl.mamlgui.util'
 		}
 	}
+	
+	baseName = 'de.wwu.maml.dsl'
+}
+
+artifacts {
+	archives exportMamlDsl
 }
 
 task updateMamlDslManifest(type: Copy, dependsOn: exportMamlDsl) {
