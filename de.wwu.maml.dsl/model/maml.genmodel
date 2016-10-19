@@ -95,7 +95,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute maml.ecore#//Model/projectName"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="Mamldata" basePackage="de.wwu.maml.dsl" ecorePackage="mamldata.ecore#/">
+  <genPackages prefix="Mamldata" basePackage="de.wwu.maml.dsl" generateModelWizard="false"
+      ecorePackage="mamldata.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="mamldata.ecore#//Multiplicity">
       <genEnumLiterals ecoreEnumLiteral="mamldata.ecore#//Multiplicity/ONE"/>
       <genEnumLiterals ecoreEnumLiteral="mamldata.ecore#//Multiplicity/MANY"/>
@@ -155,7 +156,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mamldata.ecore#//Property/name"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="Mamlgui" basePackage="de.wwu.maml.dsl" ecorePackage="mamlgui.ecore#/">
+  <genPackages prefix="Mamlgui" basePackage="de.wwu.maml.dsl" generateModelWizard="false"
+      ecorePackage="mamlgui.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="mamlgui.ecore#//AccessType">
       <genEnumLiterals ecoreEnumLiteral="mamlgui.ecore#//AccessType/READ"/>
       <genEnumLiterals ecoreEnumLiteral="mamlgui.ecore#//AccessType/WRITE"/>
