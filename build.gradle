@@ -1,3 +1,3 @@
 task setupMamlDsl(dependsOn: "de.wwu.maml.dsl:updateMamlDslManifest")
 
-task buildMamlDsl(dependsOn: ["de.wwu.maml.dsl:exportMamlDsl", "de.wwu.maml.dsl:install", "de.wwu.maml.dsl.edit:install"])
+task buildMamlDsl(dependsOn: ["de.wwu.maml.dsl:updateMamlDslManifest", "de.wwu.maml.dsl:install", "de.wwu.maml.dsl.edit:install", "de.wwu.maml.dsl.editor:install"])

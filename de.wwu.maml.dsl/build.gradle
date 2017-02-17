@@ -105,6 +105,7 @@ task exportMamlDsl(type: Jar, dependsOn:generateMamlFromEcore){
 	}
 	
 	baseName = 'de.wwu.maml.dsl'
+	archiveName = 'de.wwu.maml.dsl.jar'
 }
 
 artifacts {
