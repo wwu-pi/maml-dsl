@@ -29,5 +29,4 @@
             class="de.wwu.maml.dsl.mamlgui.MamlguiPackage"
             genModel="model/maml.genmodel"/>
    </extension>
-
 </plugin>
