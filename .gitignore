@@ -93,3 +93,5 @@ hs_err_pid*
 # AND keep classpath files (otherwise import will fail) TODO 
 !/de.wwu.maml.dsl.edit/.classpath
 !/de.wwu.maml.dsl.editor/.classpath
+# AND keep custom icons
+!/de.wwu.maml.dsl.editor/icons/
