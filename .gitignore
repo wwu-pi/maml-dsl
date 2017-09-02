@@ -95,3 +95,22 @@ hs_err_pid*
 !/de.wwu.maml.dsl.editor/.classpath
 # AND keep custom icons
 !/de.wwu.maml.dsl.editor/icons/
+
+# AND keep custom editor (ugly chain is the only way to exclude single file)
+!/de.wwu.maml.dsl.editor/plugin.xml
+
+!/de.wwu.maml.dsl.editor/src
+/de.wwu.maml.dsl.editor/src/*
+!/de.wwu.maml.dsl.editor/src/de
+/de.wwu.maml.dsl.editor/src/de/*
+!/de.wwu.maml.dsl.editor/src/de/wwu
+/de.wwu.maml.dsl.editor/src/de/wwu/*
+!/de.wwu.maml.dsl.editor/src/de/wwu/maml
+/de.wwu.maml.dsl.editor/src/de/wwu/maml/*
+!/de.wwu.maml.dsl.editor/src/de/wwu/maml/dsl
+/de.wwu.maml.dsl.editor/src/de/wwu/maml/dsl/*
+!/de.wwu.maml.dsl.editor/src/de/wwu/maml/dsl/maml
+/de.wwu.maml.dsl.editor/src/de/wwu/maml/dsl/maml/*
+!/de.wwu.maml.dsl.editor/src/de/wwu/maml/dsl/maml/presentation
+/de.wwu.maml.dsl.editor/src/de/wwu/maml/dsl/maml/presentation/*
+!/de.wwu.maml.dsl.editor/src/de/wwu/maml/dsl/maml/presentation/MamlCreateGraphicalModelWizard.java 

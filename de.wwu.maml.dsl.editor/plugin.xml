@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="de.wwu.maml.category.ID"
+            name="MAML"/>
+      <wizard
+            id="de.wwu.maml.dsl.maml.presentation.MamlModelWizardID"
+            name="%_UI_MamlModelWizard_label"
+            class="de.wwu.maml.dsl.maml.presentation.MamlCreateGraphicalModelWizard"
+            category="de.wwu.maml.category.ID"
+            icon="icons/full/obj16/MamlModelFile.gif">
+         <description>%_UI_MamlModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated maml -->
+      <editor
+            id="de.wwu.maml.dsl.maml.presentation.MamlEditorID"
+            name="%_UI_MamlEditor_label"
+            icon="icons/full/obj16/MamlModelFile.gif"
+            extensions="maml"
+            class="de.wwu.maml.dsl.maml.presentation.MamlEditor"
+            contributorClass="de.wwu.maml.dsl.maml.presentation.MamlActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated maml -->
+      <editor
+            id="de.wwu.maml.dsl.mamldata.presentation.MamldataEditorID"
+            name="%_UI_MamldataEditor_label"
+            icon="icons/full/obj16/MamldataModelFile.gif"
+            extensions="mamldata"
+            class="de.wwu.maml.dsl.mamldata.presentation.MamldataEditor"
+            contributorClass="de.wwu.maml.dsl.mamldata.presentation.MamldataActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated maml -->
+      <editor
+            id="de.wwu.maml.dsl.mamlgui.presentation.MamlguiEditorID"
+            name="%_UI_MamlguiEditor_label"
+            icon="icons/full/obj16/MamlguiModelFile.gif"
+            extensions="mamlgui"
+            class="de.wwu.maml.dsl.mamlgui.presentation.MamlguiEditor"
+            contributorClass="de.wwu.maml.dsl.mamlgui.presentation.MamlguiActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
