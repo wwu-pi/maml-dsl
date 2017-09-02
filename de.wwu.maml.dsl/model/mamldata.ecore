@@ -51,6 +51,8 @@
   <eClassifiers xsi:type="ecore:EEnum" name="Multiplicity">
     <eLiterals name="ONE"/>
     <eLiterals name="MANY" value="1"/>
+    <eLiterals name="ZEROONE" value="2" literal="ZEROONE"/>
+    <eLiterals name="ZEROMANY" value="3" literal="ZEROMANY"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataTypeLiteral" eSuperTypes="#//DataType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
@@ -63,4 +65,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//DataType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Currency" eSuperTypes="#//NumericType"/>
 </ecore:EPackage>
