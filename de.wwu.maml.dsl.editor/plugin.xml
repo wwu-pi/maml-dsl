@@ -6,21 +6,8 @@
 
 <plugin>
 
-   <extension point="org.eclipse.ui.newWizards">
-      <category
-            id="de.wwu.maml.category.ID"
-            name="MAML"/>
-      <wizard
-            id="de.wwu.maml.dsl.maml.presentation.MamlModelWizardID"
-            name="%_UI_MamlModelWizard_label"
-            class="de.wwu.maml.dsl.maml.presentation.MamlCreateGraphicalModelWizard"
-            category="de.wwu.maml.category.ID"
-            icon="icons/full/obj16/MamlModelFile.gif">
-         <description>%_UI_MamlModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
-   </extension>
-
+	<!-- exclude default file wizard -->
+	
    <extension point="org.eclipse.ui.editors">
       <!-- @generated maml -->
       <editor
